@@ -1,0 +1,21 @@
+{
+  "name": "ogg-packet",
+  "description": "Manually construct `ogg_packet` struct instances",
+  "keywords": [
+    "ogg",
+    "libogg",
+    "packet",
+    "ogg_packet",
+    "struct"
+  ],
+  "version": "0.0.0",
+  "author": "Nathan Rajlich <nathan@tootallnate.net> (http://tootallnate.net)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TooTallNate/node-ogg-packet.git"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    "ref-struct": "*"
+  }
+}
