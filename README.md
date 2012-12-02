@@ -25,33 +25,29 @@ Example
 ``` javascript
 var ogg_packet = require('ogg-packet');
 
-var decoder = new ogg.Decoder();
-decoder.on('stream', function (stream) {
-  console.log('new "stream":', stream.serialno);
+// create an `ogg_packet` struct instance
+var packet = new ogg_packet();
 
-  // emitted upon the first packet of the stream
-  stream.on('bof', function () {
-    console.log('got "bof":', stream.serialno);
-  });
+// the contents of the "packet"
+var buf = new Buffer('hello world');
+packet.packet = buf;
+packet.bytes = buf.length;
 
-  // emitted for each `ogg_packet` instance in the stream.
-  // note that this is an *asynchronous* event!
-  stream.on('packet', function (packet, done) {
-    console.log('got "packet":', packet.packetno);
-    done();
-  });
+// this will be the first packet in the ogg stream
+packet.b_o_s = 1;
 
-  // emitted after the last packet of the stream
-  stream.on('eof', function () {
-    console.log('got "eof":', stream.serialno);
-  });
-});
+// there will be more `ogg_packet`s after this one in the ogg stream
+packet.e_o_s = 0;
 
-// pipe the ogg file to the Decoder
-fs.createReadStream(file).pipe(decoder);
+// the "granulepos" is a time-constant value used by the codec decoder
+packet.granulepos = 12345;
+
+// the "packetno" should increment by one for each packet in the ogg stream
+packet.packetno = 0;
+
+// now send the packet off to an `ogg.Encoder` or
+// a codec-specific decoder like `vorbis.Decoder`...
 ```
-
-See the `examples` directory for some more example code.
 
 
 API
