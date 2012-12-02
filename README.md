@@ -61,7 +61,7 @@ API
 
 A `ref-struct` class that mirrors the `ogg_packet` fields in the `ogg.h` file.
 
-```
+``` c
 typedef struct {
   unsigned char *packet;
   long  bytes;
