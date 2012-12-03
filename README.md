@@ -47,6 +47,7 @@ packet.packetno = 0;
 
 // now send the packet off to an `ogg.Encoder` or
 // a codec-specific decoder like `vorbis.Decoder`...
+stream.packetin(packet.buffer, function (err) { /* ... */ });
 ```
 
 
